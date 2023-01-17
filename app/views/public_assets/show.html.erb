@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @public_asset %>
+
+<div>
+  <%= link_to "Edit this public asset", edit_public_asset_path(@public_asset) %> |
+  <%= link_to "Back to public assets", public_assets_path %>
+
+  <%= button_to "Destroy this public asset", @public_asset, method: :delete %>
+</div>

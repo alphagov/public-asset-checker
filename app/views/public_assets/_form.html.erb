@@ -1,0 +1,27 @@
+<%= form_with(model: public_asset) do |form| %>
+  <% if public_asset.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(public_asset.errors.count, "error") %> prohibited this public_asset from being saved:</h2>
+
+      <ul>
+        <% public_asset.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :url, style: "display: block" %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div>
+    <%= form.label :validate_by, style: "display: block" %>
+    <%= form.select :validate_by, ["size", "version"] %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
