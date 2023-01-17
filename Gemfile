@@ -21,7 +21,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem "govuk_test"
   gem "rspec-rails"
-  gem "rubocop-govuk"
+  gem "rubocop-govuk", require: false
 end
 
 group :development do
