@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "yarn run lint:js && yarn run lint:scss",
-    "lint:js": "standard 'app/assets/javascripts/**/*.js' 'spec/javascripts/**/*.js'",
-    "lint:scss": "stylelint app/assets/stylesheets/"
+    "lint:js": "standard",
+    "lint:scss": "stylelint --allow-empty-input app/assets/stylesheets/"
   },
   "standardx": {
     "env": {
