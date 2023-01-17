@@ -26,3 +26,7 @@
 
 # Ignore Coverage output
 /coverage
+
+# Ignore Node Modules and yarn error log.
+/node_modules
+yarn-error.log
