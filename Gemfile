@@ -13,12 +13,12 @@ gem "pg"
 gem "plek"
 gem "puma"
 gem "sprockets-rails"
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "uglifier"
 
 group :development, :test do
   gem "byebug"
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "govuk_test"
   gem "rspec-rails"
   gem "rubocop-govuk", require: false
