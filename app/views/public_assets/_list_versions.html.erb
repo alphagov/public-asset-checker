@@ -1,0 +1,5 @@
+<ul>
+  <% public_asset_statuses.order(created_at: :desc).each do |status| %>
+    <li><%= status.created_at.strftime("%d/%m/%Y") %> : <%= status.version %></li>
+  <% end %>
+</ul>

@@ -4,6 +4,8 @@
 
 <% if @public_asset.validate_by_size? %>
   <%= render "line_chart", labels: @labels.to_json, url: @url.to_json, sizes: @sizes %>
+<% else %>
+  <%= render "list_versions", public_asset_statuses: @public_asset.public_asset_statuses %>
 <% end %>
 
 <div>
