@@ -1,34 +1,47 @@
 require "faraday"
 
 class AssetSizeChecker
-  attr_reader :errors
+  attr_reader :notifications
 
   def initialize
-    @errors = []
+    @notifications = []
   end
 
   def compare_sizes
     PublicAsset.where(validate_by: "size").all.find_each do |asset|
       response = Faraday.get(asset.url)
       current_size = response.body.bytesize
-      latest_size = asset.latest_size
+      expected_size = asset.latest_size
 
-      unless current_size == latest_size
-        errors << {
-          current_size:,
-          expected_size: latest_size,
-          url: asset.url,
-        }
+      category = "WARNING"
+      if current_size == expected_size
+        category = "SAME"
+      elsif within_tolerance?(current_size, expected_size)
+        PublicAssetStatus.create(
+          public_asset_id: asset.id,
+          size: current_size,
+        )
+        category = "UPDATE"
       end
+      notifications << {
+        category: category,
+        current_size: current_size,
+        expected_size: expected_size,
+        url: asset.url,
+      }
     end
     notify
   end
 
+  def within_tolerance?(current_size, expected_size)
+    tolerance = ENV["SIZE_TOLERANCE"].to_i
+    current_size.between?(expected_size - tolerance, expected_size + tolerance)
+  end
+
   def notify
     notifier = Notifier.new
-    errors.each do |error|
-      notifier.notify("ERROR: #{error[:url]} has changed! It should be [#{error[:expected_size]}] but is now [#{error[:current_size]}]")
-      Rails.logger.debug "ERROR: #{error[:url]} has changed! It should be [#{error[:expected_size]}] but is now [#{error[:current_size]}]"
+    notifications.each do |notification|
+      notifier.notify("#{notification[:category]}: #{notification[:url]} was [#{notification[:expected_size]}] is [#{notification[:current_size]}]")
     end
   end
 end
