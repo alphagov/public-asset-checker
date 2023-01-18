@@ -5,7 +5,16 @@ class PublicAssetsController < ApplicationController
     @public_assets = PublicAsset.all
   end
 
-  def show; end
+  def show
+    if @public_asset.validate_by_size?
+      @url = @public_asset.url
+      statuses = @public_asset.public_asset_statuses
+
+      dates = statuses.map(&:created_at)
+      @labels = dates.map { |date| Date.parse(date.to_s).strftime('%d/%m/%Y') }
+      @sizes = statuses.map(&:size)
+    end
+  end
 
   def new
     @public_asset = PublicAsset.new
