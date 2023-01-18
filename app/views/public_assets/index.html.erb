@@ -1,14 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Public assets</h1>
+<h1>Public asset checker</h1>
 
 <div id="public_assets">
   <% @public_assets.each do |public_asset| %>
     <%= render public_asset %>
     <p>
-      <%= link_to "Show this public asset", public_asset %>
+      <%= link_to "Show", public_asset %>
     </p>
+    <hr>
   <% end %>
 </div>
 
-<%= link_to "New public asset", new_public_asset_path %>
+<%= link_to "New", new_public_asset_path %>
