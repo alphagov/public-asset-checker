@@ -1,11 +1,10 @@
-<div id="<%= dom_id public_asset %>">
-  <p>
-    <strong>URL:</strong>
-    <%= public_asset.url %>
-  </p>
+<p>
+  [<strong><%= public_asset.validate_by %></strong>]:
+  <%= link_to public_asset.url, public_asset.url, target: :_blank %>
+</p>
 
-  <p>
-    <strong>Validate by:</strong>
-    <%= public_asset.validate_by %>
-  </p>
-</div>
+<p>
+  <%= link_to "Show", public_asset %>
+</p>
+
+<hr>
