@@ -25,7 +25,9 @@ class AssetSizeChecker
   end
 
   def notify
+    notifier = Notifier.new
     errors.each do |error|
+      notifier.notify("ERROR: #{error[:url]} has changed! It should be [#{error[:expected_size]}] but is now [#{error[:current_size]}]")
       Rails.logger.debug "ERROR: #{error[:url]} has changed! It should be [#{error[:expected_size]}] but is now [#{error[:current_size]}]"
     end
   end

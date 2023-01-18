@@ -30,3 +30,5 @@
 # Ignore Node Modules and yarn error log.
 /node_modules
 yarn-error.log
+
+.env
