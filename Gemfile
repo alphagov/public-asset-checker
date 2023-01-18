@@ -19,6 +19,7 @@ gem "uglifier"
 group :development, :test do
   gem "byebug"
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "dotenv-rails"
   gem "govuk_test"
   gem "rspec-rails"
   gem "rubocop-govuk", require: false
@@ -27,7 +28,7 @@ end
 group :development do
   gem "faker"
   gem "listen"
-  gem "web-console"
+  # gem "web-console"
 end
 
 group :test do

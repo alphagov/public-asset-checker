@@ -11,7 +11,7 @@ class PublicAssetsController < ApplicationController
       statuses = @public_asset.public_asset_statuses
 
       dates = statuses.map(&:created_at)
-      @labels = dates.map { |date| Date.parse(date.to_s).strftime('%d/%m/%Y') }
+      @labels = dates.map { |date| Date.parse(date.to_s).strftime("%d/%m/%Y") }
       @sizes = statuses.map(&:size)
     end
   end

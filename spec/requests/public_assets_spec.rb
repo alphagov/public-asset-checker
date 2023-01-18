@@ -1,4 +1,10 @@
 RSpec.describe "/public_assets", type: :request do
+  let(:headers) do
+    {
+      Authorization: ActionController::HttpAuthentication::Basic.encode_credentials(ENV["USERNAME"], ENV["PASSWORD"]),
+    }
+  end
+
   let(:valid_attributes) do
     skip
   end
@@ -18,14 +24,14 @@ RSpec.describe "/public_assets", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       public_asset = PublicAsset.create! valid_attributes
-      get public_asset_url(public_asset)
+      get public_asset_url(public_asset), headers: headers
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_public_asset_url
+      get new_public_asset_url, headers: headers
       expect(response).to be_successful
     end
   end
@@ -55,12 +61,12 @@ RSpec.describe "/public_assets", type: :request do
     context "with invalid parameters" do
       it "does not create a new PublicAsset" do
         expect {
-          post public_assets_url, params: { public_asset: invalid_attributes }
+          post public_assets_url, params: { public_asset: invalid_attributes }, headers:
         }.to change(PublicAsset, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post public_assets_url, params: { public_asset: invalid_attributes }
+        post public_assets_url, params: { public_asset: invalid_attributes }, headers: headers
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

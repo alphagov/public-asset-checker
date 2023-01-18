@@ -8,23 +8,25 @@ class AssetSizeChecker
   end
 
   def compare_sizes
-    PublicAsset.where(validate_by: "size").all.each do |asset|
+    PublicAsset.where(validate_by: "size").all.find_each do |asset|
       response = Faraday.get(asset.url)
       current_size = response.body.bytesize
       latest_size = asset.latest_size
 
-      errors << {
-        current_size: current_size,
-        expected_size: latest_size,
-        url: asset.url
-      } unless current_size == latest_size
+      unless current_size == latest_size
+        errors << {
+          current_size:,
+          expected_size: latest_size,
+          url: asset.url,
+        }
+      end
     end
     notify
   end
 
   def notify
     errors.each do |error|
-      puts "ERROR: #{error[:url]} has changed! It should be [#{error[:expected_size]}] but is now [#{error[:current_size]}]"
+      Rails.logger.debug "ERROR: #{error[:url]} has changed! It should be [#{error[:expected_size]}] but is now [#{error[:current_size]}]"
     end
   end
 end
