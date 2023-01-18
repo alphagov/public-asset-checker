@@ -10,4 +10,8 @@ class PublicAsset < ApplicationRecord
   def validate_by_version?
     validate_by == "version"
   end
+
+  def latest_size
+    public_asset_statuses.order(created_at: :desc).first.size
+  end
 end

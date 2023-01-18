@@ -96,6 +96,10 @@ GEM
     execjs (2.8.1)
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
+    faraday (2.7.3)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -268,6 +272,7 @@ GEM
     rubocop-rspec (2.15.0)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
@@ -324,6 +329,7 @@ DEPENDENCIES
   byebug
   debug
   faker
+  faraday
   govuk_app_config
   govuk_publishing_components
   govuk_test

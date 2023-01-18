@@ -6,6 +6,7 @@ ruby File.read(".ruby-version").chomp
 gem "rails", "7.0.4"
 
 gem "bootsnap", require: false
+gem "faraday"
 gem "govuk_app_config"
 gem "govuk_publishing_components"
 gem "jbuilder"
