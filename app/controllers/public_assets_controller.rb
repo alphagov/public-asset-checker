@@ -6,13 +6,17 @@ class PublicAssetsController < ApplicationController
   end
 
   def show
-    if @public_asset.validate_by_size?
-      @url = @public_asset.url
-      statuses = @public_asset.public_asset_statuses
+    @url = @public_asset.url
+    statuses = @public_asset.public_asset_statuses
 
-      dates = statuses.map(&:created_at)
-      @labels = dates.map { |date| Date.parse(date.to_s).strftime("%d/%m/%Y") }
-      @sizes = statuses.map(&:size)
+    dates = statuses.map(&:created_at)
+    @labels = dates.map { |date| Date.parse(date.to_s).strftime("%d/%m/%Y") }
+
+    if @public_asset.validate_by_size?
+      @values = statuses.map(&:size)
+    elsif @public_asset.validate_by_version?
+      versions = statuses.map(&:version)
+      @values = versions.map { |version| version.split("=").last.to_i }
     end
   end
 
