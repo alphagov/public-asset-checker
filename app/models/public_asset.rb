@@ -15,4 +15,12 @@ class PublicAsset < ApplicationRecord
   def latest_size
     public_asset_statuses.order(created_at: :desc).first.size
   end
+
+  def self.sizes
+    where(validate_by: "size")
+  end
+
+  def self.versions
+    where(validate_by: "version")
+  end
 end
