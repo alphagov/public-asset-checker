@@ -1,10 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @public_asset %>
+<span class="govuk-caption-m"><%= @public_asset.validate_by %></span>
+<h1 class="govuk-heading-m"><%= @public_asset.url %></h1>
 
-<%= render "line_chart", labels: @labels.to_json, url: @url.to_json, values: @values %>
-
-<div>
-  <%= link_to "Edit", edit_public_asset_path(@public_asset) %>
-  <%= button_to "Destroy", @public_asset, method: :delete %>
+<div class="govuk-!-padding-bottom-9">
+  <%= render "line_chart", labels: @labels.to_json, url: @url.to_json, values: @values %>
 </div>
+
+<p class="govuk-body">
+  <%= link_to "Edit", edit_public_asset_path(@public_asset), class: "govuk-link" %> |
+  <%= link_to "New", new_public_asset_path, class: "govuk-link" %> |
+  <%= link_to "Open", @public_asset.url, target: :_blank, class: "govuk-link" %> |
+  <%= link_to "Destroy", @public_asset, class: "govuk-link", method: :delete %>
+</p>

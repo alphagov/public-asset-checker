@@ -11,17 +11,36 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :url, style: "display: block" %>
-    <%= form.text_field :url, style: "width: 100%" %>
-  </div>
+  <%= render "govuk_publishing_components/components/input", {
+    label: {
+      text: "URL"
+    },
+    id: "public_asset_url",
+    name: "public_asset[url]",
+    value: @public_asset.url,
+    autofocus: true,
+    tabindex: 0
+  } %>
 
-  <div>
-    <%= form.label :validate_by, style: "display: block" %>
-    <%= form.select :validate_by, ["size", "version"] %>
-  </div>
+  <%= render "govuk_publishing_components/components/radio", {
+    heading: "How would you like this URL validated?",
+    heading_size: "m",
+    heading_level: 0,
+    id: "public_asset_validate_by",
+    name: "public_asset[validate_by]",
+    items: [
+      {
+        value: "size",
+        text: "Size",
+        checked: @public_asset ? (@public_asset[:validate_by] == "size" ? true : false ) : true,
+      },
+      {
+        value: "version",
+        text: "Version",
+        checked: @public_asset ? (@public_asset[:validate_by] == "version" ? true : false ) : true,
+      }
+    ]
+  } %>
 
-  <div>
-    <%= form.submit "Save" %>
-  </div>
+  <%= render "govuk_publishing_components/components/button", text: "Save", margin_bottom: true %>
 <% end %>
