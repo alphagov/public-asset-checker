@@ -6,8 +6,8 @@ RSpec.describe "public_assets/show", type: :view do
                           ))
   end
 
-  it "renders attributes in <p>" do
+  it "renders the url" do
     render
-    expect(rendered).to match(/URL/)
+    expect(rendered).to match(/https:\/\/www.bedrock.com\/fred/)
   end
 end
