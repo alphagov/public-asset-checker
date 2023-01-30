@@ -9,6 +9,11 @@
     "lint:js": "standard",
     "lint:scss": "stylelint --allow-empty-input app/assets/stylesheets/"
   },
+  "standard": {
+    "ignore": [
+      "/public/app.js"
+    ]
+  },
   "standardx": {
     "env": {
       "browser": true
