@@ -17,7 +17,7 @@ class AssetSizeChecker
       if current == expected
         category = "SAME"
       elsif within_tolerance?(current, expected)
-        PublicAssetStatus.create(
+        PublicAssetStatus.create!(
           public_asset_id: asset.id,
           size: current,
         )
@@ -25,9 +25,9 @@ class AssetSizeChecker
       end
 
       notifications << {
-        category: category,
-        current: current,
-        expected: expected,
+        category:,
+        current:,
+        expected:,
         url: asset.url,
       }
     end

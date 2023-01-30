@@ -16,9 +16,9 @@ class AssetVersionChecker
       category = "SAME" if expected == current
 
       notifications << {
-        category: category,
-        current: current,
-        expected: expected,
+        category:,
+        current:,
+        expected:,
         url: asset.url,
       }
     end
