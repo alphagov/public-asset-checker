@@ -21,17 +21,22 @@ group :development, :test do
   gem "byebug"
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "dotenv-rails"
+  gem "faker"
   gem "govuk_test"
   gem "rspec-rails"
   gem "rubocop-govuk", require: false
 end
 
 group :development do
-  gem "faker"
   gem "listen"
   # gem "web-console"
 end
 
 group :test do
+  gem "brakeman"
+  gem "capybara"
+  gem "factory_bot_rails"
+  gem "shoulda-matchers"
   gem "simplecov"
+  gem "webmock"
 end
