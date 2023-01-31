@@ -1,3 +1,4 @@
 RSpec.describe PublicAsset, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { is_expected.to validate_presence_of :url }
+  it { is_expected.to validate_presence_of :validate_by }
 end

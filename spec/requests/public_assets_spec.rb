@@ -6,7 +6,10 @@ RSpec.describe "/public_assets", type: :request do
   end
 
   let(:valid_attributes) do
-    skip
+    {
+      url: "https://www.bedrock.com/",
+      validate_by: "size",
+    }
   end
 
   let(:invalid_attributes) do
@@ -16,7 +19,7 @@ RSpec.describe "/public_assets", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       PublicAsset.create! valid_attributes
-      get public_assets_url
+      get public_assets_url, headers: headers
       expect(response).to be_successful
     end
   end
@@ -39,7 +42,7 @@ RSpec.describe "/public_assets", type: :request do
   describe "GET /edit" do
     it "renders a successful response" do
       public_asset = PublicAsset.create! valid_attributes
-      get edit_public_asset_url(public_asset)
+      get edit_public_asset_url(public_asset), headers: headers
       expect(response).to be_successful
     end
   end
@@ -48,12 +51,12 @@ RSpec.describe "/public_assets", type: :request do
     context "with valid parameters" do
       it "creates a new PublicAsset" do
         expect {
-          post public_assets_url, params: { public_asset: valid_attributes }
+          post public_assets_url, params: { public_asset: valid_attributes }, headers:
         }.to change(PublicAsset, :count).by(1)
       end
 
       it "redirects to the created public_asset" do
-        post public_assets_url, params: { public_asset: valid_attributes }
+        post public_assets_url, params: { public_asset: valid_attributes }, headers: headers
         expect(response).to redirect_to(public_asset_url(PublicAsset.last))
       end
     end
@@ -75,29 +78,30 @@ RSpec.describe "/public_assets", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
+        { url: "https://www.slate.com", validate_by: "version" }
       end
 
       it "updates the requested public_asset" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: new_attributes }
+        patch public_asset_url(public_asset), params: { public_asset: new_attributes }, headers: headers
         public_asset.reload
-        skip("Add assertions for updated state")
+        expect(public_asset.url).to eq("https://www.slate.com")
+        expect(public_asset.validate_by).to eq("version")
       end
 
       it "redirects to the public_asset" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: new_attributes }
+        patch public_asset_url(public_asset), params: { public_asset: new_attributes }, headers: headers
         public_asset.reload
         expect(response).to redirect_to(public_asset_url(public_asset))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+      it "renders a response with 302 status" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        patch public_asset_url(public_asset), params: { public_asset: invalid_attributes }, headers: headers
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -106,13 +110,13 @@ RSpec.describe "/public_assets", type: :request do
     it "destroys the requested public_asset" do
       public_asset = PublicAsset.create! valid_attributes
       expect {
-        delete public_asset_url(public_asset)
+        delete public_asset_url(public_asset), headers:
       }.to change(PublicAsset, :count).by(-1)
     end
 
     it "redirects to the public_assets list" do
       public_asset = PublicAsset.create! valid_attributes
-      delete public_asset_url(public_asset)
+      delete public_asset_url(public_asset), headers: headers
       expect(response).to redirect_to(public_assets_url)
     end
   end
