@@ -17,11 +17,10 @@ end
 def payload(asset_status, category, new_value)
   { payload:
     {
-      channel: ENV['SLACK_CHANNEL'],
-      username: ENV['SLACK_USERNAME'],
-      text: "#{category}: #{asset_status.public_asset.url} old [#{asset_status.size}] new [#{new_value}]"
-    }.to_json
-  }
+      channel: ENV["SLACK_CHANNEL"],
+      username: ENV["SLACK_USERNAME"],
+      text: "#{category}: #{asset_status.public_asset.url} old [#{asset_status.size}] new [#{new_value}]",
+    }.to_json }
 end
 
 RSpec.describe AssetSizeChecker, type: :model do
