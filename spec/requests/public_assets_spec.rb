@@ -12,10 +12,6 @@ RSpec.describe "/public_assets", type: :request do
     }
   end
 
-  let(:invalid_attributes) do
-    { public_asset: { url: "", validate_by: "" } }
-  end
-
   describe "GET /index" do
     it "renders a successful response" do
       PublicAsset.create! valid_attributes
@@ -25,6 +21,21 @@ RSpec.describe "/public_assets", type: :request do
   end
 
   describe "GET /show" do
+    it "renders a successful response" do
+      public_asset = PublicAsset.create! valid_attributes
+      get public_asset_url(public_asset), headers: headers
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET /show with a 'version' validated model" do
+    let(:valid_attributes) do
+      {
+        url: "https://www.bedrock.com/",
+        validate_by: "version",
+      }
+    end
+
     it "renders a successful response" do
       public_asset = PublicAsset.create! valid_attributes
       get public_asset_url(public_asset), headers: headers
@@ -62,6 +73,10 @@ RSpec.describe "/public_assets", type: :request do
     end
 
     context "with invalid parameters" do
+      let(:invalid_attributes) do
+        { public_asset: { url: "", validate_by: "" } }
+      end
+
       it "does not create a new PublicAsset" do
         expect {
           post public_assets_url, params: { public_asset: invalid_attributes }, headers:
@@ -98,10 +113,10 @@ RSpec.describe "/public_assets", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a response with 302 status" do
+      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: invalid_attributes }, headers: headers
-        expect(response).to have_http_status(:found)
+        patch public_asset_url(public_asset), params: { public_asset: { url: "", validate_by: "version" } }, headers: headers
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
