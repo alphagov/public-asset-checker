@@ -8,10 +8,8 @@ gem "rails", "7.0.4"
 gem "bootsnap", require: false
 gem "faraday"
 gem "govuk_app_config"
-gem "govuk_publishing_components"
 gem "jbuilder"
 gem "pg"
-gem "plek"
 gem "slack-notifier"
 gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
