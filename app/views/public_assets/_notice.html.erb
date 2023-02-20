@@ -1,5 +1,7 @@
-<div class="govuk-panel govuk-panel--confirmation">
-  <div class="govuk-panel__body">
-    <%= notice %>
+<% if notice %>
+  <div class="govuk-panel govuk-panel--confirmation">
+    <div class="govuk-panel__body">
+      <%= notice %>
+    </div>
   </div>
-</div>
+<% end %>
