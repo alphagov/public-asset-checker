@@ -359,7 +359,6 @@ DEPENDENCIES
   jbuilder
   listen
   pg
-  plek
   rails (= 7.0.4)
   rspec-rails
   rubocop-govuk
