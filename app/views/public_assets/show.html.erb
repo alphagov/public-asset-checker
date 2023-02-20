@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+<%= render "notice", locals: { notice: notice } %>
 
 <span class="govuk-caption-m"><%= @public_asset.validate_by %></span>
 <h1 class="govuk-heading-m"><%= @public_asset.url %></h1>
