@@ -11,36 +11,15 @@
     </div>
   <% end %>
 
-  <%= render "govuk_publishing_components/components/input", {
-    label: {
-      text: "URL"
-    },
-    id: "public_asset_url",
-    name: "public_asset[url]",
-    value: @public_asset.url,
-    autofocus: true,
-    tabindex: 0
-  } %>
+  <div class="govuk-form-group">
+    <%= form.label :url, class: "govuk-label govuk-label--m" %>
+    <%= form.text_field :url, value: @public_asset.url, class: "govuk-input" %>
+  </div>
 
-  <%= render "govuk_publishing_components/components/radio", {
-    heading: "How would you like this URL validated?",
-    heading_size: "m",
-    heading_level: 0,
-    id: "public_asset_validate_by",
-    name: "public_asset[validate_by]",
-    items: [
-      {
-        value: "size",
-        text: "Size",
-        checked: @public_asset ? (@public_asset[:validate_by] == "size" ? true : false ) : true,
-      },
-      {
-        value: "version",
-        text: "Version",
-        checked: @public_asset ? (@public_asset[:validate_by] == "version" ? true : false ) : true,
-      }
-    ]
-  } %>
+  <div class="govuk-form-group">
+    <%= form.label :validate_by, class: "govuk-label govuk-label--m" %>
+    <%= form.select :validate_by, ["size", "version"], { selected: @public_asset.validate_by }, { class: "govuk-select" } %>
+  </div>
 
-  <%= render "govuk_publishing_components/components/button", text: "Save", margin_bottom: true %>
+  <%= form.submit "Save", class: "govuk-button" %>
 <% end %>
