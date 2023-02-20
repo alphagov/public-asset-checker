@@ -123,17 +123,6 @@ GEM
       sentry-ruby (~> 5.3)
       statsd-ruby (~> 1.5)
       unicorn (~> 6.1)
-    govuk_personalisation (0.12.0)
-      plek (>= 1.9.0)
-      rails (>= 6, < 8)
-    govuk_publishing_components (34.4.2)
-      govuk_app_config
-      govuk_personalisation (>= 0.7.0)
-      kramdown
-      plek
-      rails (>= 6)
-      rouge
-      sprockets (>= 3)
     govuk_test (3.0.1)
       brakeman (>= 5.0.2)
       capybara (>= 3.36)
@@ -150,8 +139,6 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.3)
     kgio (2.11.4)
-    kramdown (2.4.0)
-      rexml
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -242,7 +229,6 @@ GEM
     request_store (1.5.1)
       rack (>= 1.4)
     rexml (3.2.5)
-    rouge (4.0.1)
     rspec-core (3.12.0)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -354,7 +340,6 @@ DEPENDENCIES
   faker
   faraday
   govuk_app_config
-  govuk_publishing_components
   govuk_test
   jbuilder
   listen
