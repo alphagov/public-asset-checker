@@ -1,19 +1,39 @@
 <%= form_with(model: public_asset) do |form| %>
   <% if public_asset.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(public_asset.errors.count, "error") %> prohibited this public_asset from being saved:</h2>
-
-      <ul>
-        <% public_asset.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="govuk-error-summary" data-module="govuk-error-summary">
+      <div role="alert">
+        <h2 class="govuk-error-summary__title">
+          <%= pluralize(public_asset.errors.count, "error") %> prohibited this record from being saved:
+        </h2>
+        <div class="govuk-error-summary__body">
+          <ul class="govuk-list govuk-error-summary__list">
+            <% public_asset.errors.each do |error| %>
+              <li><%= link_to error.full_message, "#public_asset_url" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   <% end %>
 
-  <div class="govuk-form-group">
+  <%
+    div_classes = ["govuk-form-group"]
+    field_classes = ["govuk-input"]
+
+    if public_asset.errors.any?
+      div_classes << "govuk-form-group--error"
+      field_classes << "govuk-input--error"
+    end
+  %>
+
+  <div class="<%= div_classes.join(" ") %>">
     <%= form.label :url, class: "govuk-label govuk-label--m" %>
-    <%= form.text_field :url, value: @public_asset.url, class: "govuk-input" %>
+    <% if public_asset.errors.any? %>
+      <p id="public_asset_url-input-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter a valid URL
+      </p>
+    <% end %>
+    <%= form.text_field :url, value: @public_asset.url, class: field_classes.join(" ") %>
   </div>
 
   <div class="govuk-form-group">
