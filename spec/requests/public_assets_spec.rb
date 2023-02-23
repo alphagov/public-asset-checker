@@ -15,7 +15,7 @@ RSpec.describe "/public_assets", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       PublicAsset.create! valid_attributes
-      get public_assets_url, headers: headers
+      get(public_assets_url, headers:)
       expect(response).to be_successful
     end
   end
@@ -23,7 +23,7 @@ RSpec.describe "/public_assets", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       public_asset = PublicAsset.create! valid_attributes
-      get public_asset_url(public_asset), headers: headers
+      get(public_asset_url(public_asset), headers:)
       expect(response).to be_successful
     end
   end
@@ -38,14 +38,14 @@ RSpec.describe "/public_assets", type: :request do
 
     it "renders a successful response" do
       public_asset = PublicAsset.create! valid_attributes
-      get public_asset_url(public_asset), headers: headers
+      get(public_asset_url(public_asset), headers:)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_public_asset_url, headers: headers
+      get(new_public_asset_url, headers:)
       expect(response).to be_successful
     end
   end
@@ -53,7 +53,7 @@ RSpec.describe "/public_assets", type: :request do
   describe "GET /edit" do
     it "renders a successful response" do
       public_asset = PublicAsset.create! valid_attributes
-      get edit_public_asset_url(public_asset), headers: headers
+      get(edit_public_asset_url(public_asset), headers:)
       expect(response).to be_successful
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe "/public_assets", type: :request do
       end
 
       it "redirects to the created public_asset" do
-        post public_assets_url, params: { public_asset: valid_attributes }, headers: headers
+        post(public_assets_url, params: { public_asset: valid_attributes }, headers:)
         expect(response).to redirect_to(public_asset_url(PublicAsset.last))
       end
     end
@@ -84,7 +84,7 @@ RSpec.describe "/public_assets", type: :request do
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post public_assets_url, params: { public_asset: invalid_attributes }, headers: headers
+        post(public_assets_url, params: { public_asset: invalid_attributes }, headers:)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -98,7 +98,7 @@ RSpec.describe "/public_assets", type: :request do
 
       it "updates the requested public_asset" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: new_attributes }, headers: headers
+        patch(public_asset_url(public_asset), params: { public_asset: new_attributes }, headers:)
         public_asset.reload
         expect(public_asset.url).to eq("https://www.slate.com")
         expect(public_asset.validate_by).to eq("version")
@@ -106,7 +106,7 @@ RSpec.describe "/public_assets", type: :request do
 
       it "redirects to the public_asset" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: new_attributes }, headers: headers
+        patch(public_asset_url(public_asset), params: { public_asset: new_attributes }, headers:)
         public_asset.reload
         expect(response).to redirect_to(public_asset_url(public_asset))
       end
@@ -115,7 +115,7 @@ RSpec.describe "/public_assets", type: :request do
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         public_asset = PublicAsset.create! valid_attributes
-        patch public_asset_url(public_asset), params: { public_asset: { url: "", validate_by: "version" } }, headers: headers
+        patch(public_asset_url(public_asset), params: { public_asset: { url: "", validate_by: "version" } }, headers:)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -131,7 +131,7 @@ RSpec.describe "/public_assets", type: :request do
 
     it "redirects to the public_assets list" do
       public_asset = PublicAsset.create! valid_attributes
-      delete public_asset_url(public_asset), headers: headers
+      delete(public_asset_url(public_asset), headers:)
       expect(response).to redirect_to(public_assets_url)
     end
   end
