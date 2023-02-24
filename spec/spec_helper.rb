@@ -36,3 +36,25 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+def stub_get(url, value)
+  stub_request(:get, url).to_return(
+    status: 200,
+    body: value,
+  )
+end
+
+def stub_post(url, category, new_value, old_value)
+  stub_request(:post, ENV["SLACK_WEBHOOK_URL"])
+    .with(body: payload(url, category, new_value, old_value))
+    .to_return(status: 200, body: "")
+end
+
+def payload(url, category, new_value, old_value)
+  { payload:
+    {
+      channel: ENV["SLACK_CHANNEL"],
+      username: ENV["SLACK_USERNAME"],
+      text: "#{category}: #{url} old [#{old_value}] new [#{new_value}]",
+    }.to_json }
+end
