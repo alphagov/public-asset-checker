@@ -16,7 +16,7 @@ RSpec.describe AssetSizeChecker, type: :model do
     it "when the response value is not the same and is within the tolerance we update the record and send a notification" do
       stub_get(asset_status.public_asset.url, Faker::Alphanumeric.alpha(number: 0))
       stub_post(asset_status.public_asset.url, "UPDATE", 0, asset_status.size)
-      
+
       checker.compare
 
       expect(checker.notifications.size).to eq(1)

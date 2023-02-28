@@ -10,13 +10,14 @@ RSpec.describe AssetVersionChecker, type: :model do
   end
 
   describe "compare" do
-    let(:public_asset) {create(:public_asset, validate_by: "version")}
+    let(:public_asset) { create(:public_asset, validate_by: "version") }
     let(:checker) { described_class.new }
-    let(:asset_status) { create :public_asset_status,
-      public_asset: public_asset,
-      size: nil,
-      version: 42
-    } 
+    let(:asset_status) do
+      create :public_asset_status,
+             public_asset:,
+             size: nil,
+             version: 42
+    end
 
     it "when the versions match, we get a SAME notification" do
       stub_get(public_asset.url, '"v=42"')
@@ -34,7 +35,7 @@ RSpec.describe AssetVersionChecker, type: :model do
       stub_post(public_asset.url, "WARNING", 50, 42)
 
       checker.compare
-      
+
       expect(checker.notifications.size).to eq(1)
     end
   end
