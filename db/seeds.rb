@@ -37,7 +37,7 @@ if Rails.env.development?
     public_assets_by_version.all.each do |asset|
       PublicAssetStatus.create!(
         public_asset_id: asset.id,
-        version: "v=#{Faker::Number.number(digits: 3)}",
+        version: "T=\"#{Faker::Number.number(digits: 3)}\"",
         created_at: date_time,
         updated_at: date_time,
       )

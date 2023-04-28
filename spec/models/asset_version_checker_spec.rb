@@ -20,7 +20,7 @@ RSpec.describe AssetVersionChecker, type: :model do
     end
 
     it "when the versions match, we get a SAME notification" do
-      stub_get(public_asset.url, '"v=42"')
+      stub_get(public_asset.url, 'T="42"')
       stub_get(ENV["GITHUB_URL"], 'SCRIPT_VERSION = "42"')
       stub_post(public_asset.url, "SAME", 42, 42)
 
@@ -30,7 +30,7 @@ RSpec.describe AssetVersionChecker, type: :model do
     end
 
     it "when the versions don't match, we get a WARNING notification" do
-      stub_get(public_asset.url, '"v=50"')
+      stub_get(public_asset.url, 'T="50"')
       stub_get(ENV["GITHUB_URL"], 'SCRIPT_VERSION = "42"')
       stub_post(public_asset.url, "WARNING", 50, 42)
 
