@@ -7,7 +7,7 @@ class AssetVersionChecker < AssetChecker
 
   def compare
     public_assets.all.find_each do |asset|
-      current = get_version(asset.url, /"v=(\d+)"/)
+      current = get_version(asset.url, /T="(\d+)"/)
       expected = get_version(ENV["GITHUB_URL"], /SCRIPT_VERSION = "(\d+)"/)
 
       category = "WARNING"
