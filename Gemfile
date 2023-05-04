@@ -10,6 +10,7 @@ gem "faraday"
 gem "govuk_app_config"
 gem "jbuilder"
 gem "pg"
+gem "puma"
 gem "slack-notifier"
 gem "sprockets-rails"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
