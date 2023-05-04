@@ -341,6 +341,7 @@ DEPENDENCIES
   jbuilder
   listen
   pg
+  puma
   rails (= 7.0.4.3)
   rspec-rails
   rubocop-govuk
