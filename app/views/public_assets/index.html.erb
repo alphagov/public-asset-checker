@@ -18,7 +18,7 @@
             <%= public_asset.url %>
           </td>
           <td class="govuk-table__cell">
-            <%= public_asset.public_asset_statuses.last.value %>
+            <%= public_asset.public_asset_statuses.last.value if public_asset.public_asset_statuses.any? %>
           </td>
           <td class="govuk-table__cell">
             <%= public_asset.validate_by %>
