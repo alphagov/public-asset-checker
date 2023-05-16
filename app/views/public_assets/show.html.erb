@@ -15,3 +15,9 @@
 
   <%= button_to "Destroy", @public_asset, method: :delete, class: "govuk-button govuk-button--warning", data: { module: "govuk-button" } %>
 </p>
+
+<h2 class="govuk-heading-m">Update current value</h2>
+
+<div>
+  <%= render "public_asset_statuses/form", public_asset: @public_asset %>
+</div>
