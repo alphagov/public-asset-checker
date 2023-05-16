@@ -1,6 +1,6 @@
 # Public Asset Checker
 
-Checks either the size or version of public - third-party hosted - asset files (e.g. JavaScript, CSS etc). We use these assets on GOV.UK pages, so we want to know if the file size or version have changed. To do this we evaluated each file against a known baseline size or version. This then notifies the #user-experience-measurement-govuk Slack channel of the result or action taken.
+Checks either the size or version of public - third-party hosted - asset files (e.g. JavaScript, CSS etc). We use these assets on GOV.UK pages, so we want to know if the file size or version have changed. To do this we evaluate each file against a known baseline size or version. This then notifies the #user-experience-measurement-govuk Slack channel of the result or action taken.
 
 ## Size checking
 
@@ -42,6 +42,8 @@ The app is [hosted on Heroku](https://govuk-public-asset-checker.herokuapp.com/)
 ### [Historical chart for file](https://govuk-public-asset-checker.herokuapp.com/public_assets/2)
 
 ![image](/docs/url-chart-page.png)
+
+This page is also where you can update the last known size or version value for the asset.
 
 ### [Example Slack notifications](https://gds.slack.com/archives/C03BF2YV63E)
 
