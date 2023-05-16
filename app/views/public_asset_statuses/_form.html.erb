@@ -1,0 +1,18 @@
+<%= form_with(model: PublicAssetStatus.new) do |form| %>
+  <%= form.hidden_field :public_asset_id, value: @public_asset.id %>
+
+  <% current_value = @public_asset.public_asset_statuses.last.value if @public_asset.public_asset_statuses.any? %>
+
+  <% if @public_asset.validate_by_version? %>
+
+    <div class="govuk-form-group">
+      <%= form.text_field :version, value: current_value, class: "govuk-input" %>
+    </div>
+  <% else %>
+    <div class="govuk-form-group">
+      <%= form.number_field :size, value: current_value, class: "govuk-input" %>
+    </div>
+  <% end %>
+
+  <%= form.submit "Update", class: "govuk-button" %>
+<% end %>
