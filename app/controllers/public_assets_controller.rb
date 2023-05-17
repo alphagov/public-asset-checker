@@ -16,7 +16,7 @@ class PublicAssetsController < ApplicationController
       @values = statuses.map(&:size)
     elsif @public_asset.validate_by_version?
       versions = statuses.map(&:version)
-      @values = versions.map { |version| version.split("=").last.to_i }
+      @values = versions.map { |version| version.split("=").last.gsub('"', "").to_i }
     end
   end
 
