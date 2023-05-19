@@ -1,17 +1,30 @@
 require "spec_helper"
-require "faker"
 
 RSpec.describe AssetVersionChecker, type: :model do
-  describe "initialize" do
-    it "when created the checker has an empty notification array" do
-      checker = described_class.new
-      expect(checker.notifications).to eq([])
+  describe "get_version" do
+    let(:asset) { create(:public_asset) }
+    let(:checker) { described_class.new(asset) }
+
+    it "finds the version number when it is present in the file" do
+      stub_get(asset.url, 'T="42"')
+
+      version = checker.get_version(asset.url, /T="(\d+)"/)
+
+      expect(version).to eq("42")
+    end
+
+    it "does not find the version number when it is not present in the file" do
+      stub_get(asset.url, 'Q="42"')
+
+      version = checker.get_version(asset.url, /T="(\d+)"/)
+
+      expect(version).to eq(nil)
     end
   end
 
   describe "compare" do
-    let(:public_asset) { create(:public_asset, validate_by: "version") }
-    let(:checker) { described_class.new }
+    let(:asset) { create(:public_asset, validate_by: "version") }
+    let(:checker) { described_class.new(asset) }
     let(:asset_status) do
       create :public_asset_status,
              public_asset:,
@@ -19,24 +32,24 @@ RSpec.describe AssetVersionChecker, type: :model do
              version: 42
     end
 
-    it "when the versions match, we get a SAME notification" do
-      stub_get(public_asset.url, 'T="42"')
+    it "when the versions match, we get a Nothing to do notification" do
+      stub_get(asset.url, 'T="42"')
       stub_get(ENV["GITHUB_URL"], 'SCRIPT_VERSION = "42"')
-      stub_post(public_asset.url, "SAME", 42, 42)
 
-      checker.compare
+      notification = checker.compare
 
-      expect(checker.notifications.size).to eq(1)
+      expect(notification.title).to eq("Nothing to do")
+      expect(notification.color).to eq("same")
     end
 
-    it "when the versions don't match, we get a WARNING notification" do
-      stub_get(public_asset.url, 'T="50"')
+    it "when the versions don't match, we get an Action required notification" do
+      stub_get(asset.url, 'T="50"')
       stub_get(ENV["GITHUB_URL"], 'SCRIPT_VERSION = "42"')
-      stub_post(public_asset.url, "WARNING", 50, 42)
 
-      checker.compare
+      notification = checker.compare
 
-      expect(checker.notifications.size).to eq(1)
+      expect(notification.title).to eq("Action required")
+      expect(notification.color).to eq("needs-attention")
     end
   end
 end
