@@ -30,7 +30,7 @@ private
   def action_required(notification, current, expected)
     notification.title = "Action required"
     notification.color = "needs-attention"
-    notification.value = "<#{ENV['GITHUB_URL']}|Source version> is [#{expected}] <#{notification.url}|Our version> is [#{current}]. Please fix our version then update the <#{ENV['PRODUCTION_URL']}/public_assets/#{notification.id}|latest value>."
+    notification.value = "<#{ENV['GITHUB_URL']}|Source version> is *#{expected}* <#{notification.url}|Our version> is *#{current}*. Please fix our version then update the <#{ENV['PRODUCTION_URL']}/public_assets/#{notification.id}|latest value>."
 
     notification
   end
@@ -38,7 +38,7 @@ private
   def nothing_to_do(notification, current, expected)
     notification.title = "Nothing to do"
     notification.color = "same"
-    notification.value = "<#{ENV['GITHUB_URL']}|Source version> is [#{expected}] <#{notification.url}|Our version> is [#{current}]."
+    notification.value = "<#{ENV['GITHUB_URL']}|Source version> is *#{expected}* <#{notification.url}|Our version> is *#{current}*."
 
     notification
   end

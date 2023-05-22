@@ -10,6 +10,9 @@
     </div>
   <% else %>
     <div class="govuk-form-group">
+      <div id="size-hint" class="govuk-hint">
+        Please give new size in Bytes without commas.
+      </div>
       <%= form.number_field :size, value: current_value, class: "govuk-input" %>
     </div>
   <% end %>
