@@ -47,9 +47,7 @@ This page is also where you can update the last known size or version value for 
 
 ### [Example Slack notifications](https://gds.slack.com/archives/C03BF2YV63E)
 
-![image](/docs/action-required-notification.png)
-
-![image](/docs/nothing-to-do-notification.png)
+![image](/docs/slack-notifications.png)
 
 ## Technical documentation
 
