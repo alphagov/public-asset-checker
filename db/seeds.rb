@@ -11,6 +11,8 @@ PublicAsset.create!(
     {
       url: "https://cdn.speedcurve.com/js/lux.js?id=47044334",
       validate_by: "version",
+      hosted_version_regex: 'H="(\d+)"',
+      source_version_regex: 'SCRIPT_VERSION = "(\d+)"',
     },
   ],
 )
@@ -21,23 +23,11 @@ if Rails.env.development?
   to_date_time = Time.zone.today
   from_date_time = to_date_time - 30
 
-  public_assets_by_size = PublicAsset.where(validate_by: "size")
-  public_assets_by_version = PublicAsset.where(validate_by: "version")
-
   (from_date_time..to_date_time).each do |date_time|
-    public_assets_by_size.all.each do |asset|
+    PublicAsset.all.each do |asset|
       PublicAssetStatus.create!(
         public_asset_id: asset.id,
-        size: Faker::Number.number(digits: 6),
-        created_at: date_time,
-        updated_at: date_time,
-      )
-    end
-
-    public_assets_by_version.all.each do |asset|
-      PublicAssetStatus.create!(
-        public_asset_id: asset.id,
-        version: "T=\"#{Faker::Number.number(digits: 3)}\"",
+        value: Faker::Number.number(digits: 4),
         created_at: date_time,
         updated_at: date_time,
       )
