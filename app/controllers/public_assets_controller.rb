@@ -62,10 +62,10 @@ private
   end
 
   def run_rake(task)
-    log_file = File.join(Rails.root, "log/#{Rails.env}.log")
+    log_file = Rails.root.join("log/#{Rails.env}.log")
 
-    Process.fork {
+    Process.fork do
       exec("bin/rake #{task} --trace 2>&1 >> #{log_file}")
-    }
+    end
   end
 end
