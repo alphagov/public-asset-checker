@@ -8,8 +8,8 @@ class AssetVersionChecker
   end
 
   def compare
-    current = get_version(asset.url, /T="(\d+)"/)
-    expected = get_version(ENV["GITHUB_URL"], /SCRIPT_VERSION = "(\d+)"/)
+    current = get_version(asset.url, asset.hosted_version_regex)
+    expected = get_version(ENV["GITHUB_URL"], asset.source_version_regex)
 
     notification = Notification.new(asset.id, asset.url)
     if expected == current
@@ -22,7 +22,7 @@ class AssetVersionChecker
   def get_version(url, regex)
     response = Faraday.get(url)
     match_data = response.body.match(regex)
-    match_data ? match_data.captures.first : nil
+    match_data ? match_data.captures.first.to_i : nil
   end
 
 private
