@@ -11,13 +11,7 @@ class PublicAssetsController < ApplicationController
 
     dates = statuses.map(&:created_at)
     @labels = dates.map { |date| Date.parse(date.to_s).strftime("%d/%m/%Y") }
-
-    if @public_asset.validate_by_size?
-      @values = statuses.map(&:size)
-    elsif @public_asset.validate_by_version?
-      versions = statuses.map(&:version)
-      @values = versions.map { |version| version.split("=").last.gsub('"', "").to_i }
-    end
+    @values = statuses.map(&:value)
   end
 
   def new
@@ -64,7 +58,7 @@ private
   end
 
   def public_asset_params
-    params.require(:public_asset).permit(:url, :validate_by)
+    params.require(:public_asset).permit(:url, :validate_by, :hosted_version_regex, :source_version_regex)
   end
 
   def run_rake(task)
