@@ -50,6 +50,13 @@ class PublicAssetsController < ApplicationController
     redirect_to public_assets_url, notice: "Public asset was successfully destroyed."
   end
 
+  def rake_runner
+    run_rake("public_assets:check_all_sizes")
+    run_rake("public_assets:check_all_versions")
+
+    redirect_to public_assets_url, notice: "Rake tasks run."
+  end
+
 private
 
   def set_public_asset
@@ -58,5 +65,13 @@ private
 
   def public_asset_params
     params.require(:public_asset).permit(:url, :validate_by)
+  end
+
+  def run_rake(task)
+    log_file = File.join(Rails.root, "log/#{Rails.env}.log")
+
+    Process.fork {
+      exec("bin/rake #{task} --trace 2>&1 >> #{log_file}")
+    }
   end
 end
