@@ -24,8 +24,7 @@ RSpec.describe AssetSizeChecker, type: :model do
     let(:asset_status) do
       create :public_asset_status,
              public_asset: asset,
-             size: 10,
-             version: nil
+             value: 10
     end
 
     it "when the response value is not the same and is within the tolerance we update the record" do

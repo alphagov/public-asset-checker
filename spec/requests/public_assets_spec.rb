@@ -9,6 +9,8 @@ RSpec.describe "/public_assets", type: :request do
     {
       url: "https://www.bedrock.com/",
       validate_by: "size",
+      hosted_version_regex: 'T="(\d+)"',
+      source_version_regex: 'SCRIPT_VERSION = "(\d+)"',
     }
   end
 
@@ -102,6 +104,8 @@ RSpec.describe "/public_assets", type: :request do
         public_asset.reload
         expect(public_asset.url).to eq("https://www.slate.com")
         expect(public_asset.validate_by).to eq("version")
+        expect(public_asset.hosted_version_regex).to eq('T="(\d+)"')
+        expect(public_asset.source_version_regex).to eq('SCRIPT_VERSION = "(\d+)"')
       end
 
       it "redirects to the public_asset" do

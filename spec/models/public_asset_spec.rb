@@ -28,9 +28,9 @@ RSpec.describe PublicAsset, type: :model do
   describe "#latest_size" do
     it "returns the latest size" do
       public_asset = create(:public_asset, url: "https://www.asos.com", validate_by: "version")
-      create(:public_asset_status, size: 1824, public_asset:, updated_at: Time.zone.now - 1, created_at: Time.zone.now - 1)
-      create(:public_asset_status, size: 999, public_asset:, updated_at: Time.zone.now, created_at: Time.zone.now)
-      expect(public_asset.latest_size).to eq 999
+      create(:public_asset_status, value: 1824, public_asset:, updated_at: Time.zone.now - 1, created_at: Time.zone.now - 1)
+      create(:public_asset_status, value: 999, public_asset:, updated_at: Time.zone.now, created_at: Time.zone.now)
+      expect(public_asset.latest_value).to eq 999
     end
   end
 
