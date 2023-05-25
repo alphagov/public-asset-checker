@@ -41,5 +41,23 @@
     <%= form.select :validate_by, ["size", "version"], { selected: @public_asset.validate_by }, { class: "govuk-select" } %>
   </div>
 
+  <% if @public_asset.validate_by_version? %>
+    <div class="govuk-form-group">
+      <%= form.label :hosted_version_regex, class: "govuk-label govuk-label--m" %>
+      <div id="size-hint" class="govuk-hint">
+        Please enter a regex which has a capture group for the version number of the GOV.UK maintained JavaScript file.
+      </div>
+      <%= form.text_field :hosted_version_regex, value: @public_asset.hosted_version_regex, class: "govuk-input" %>
+    </div>
+
+    <div class="govuk-form-group">
+      <%= form.label :source_version_regex, class: "govuk-label govuk-label--m" %>
+      <div id="size-hint" class="govuk-hint">
+        Please enter a regex which has a capture group for the version number of the source JavaScript file as it appears on <a href="<%= ENV['GITHUB_URL'] %>" target="_blank">GitHub</a>.
+      </div>
+      <%= form.text_field :source_version_regex, value: @public_asset.source_version_regex, class: "govuk-input" %>
+    </div>
+  <% end %>
+
   <%= form.submit "Save", class: "govuk-button" %>
 <% end %>
