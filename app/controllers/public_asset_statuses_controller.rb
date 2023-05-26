@@ -12,6 +12,6 @@ class PublicAssetStatusesController < ApplicationController
 private
 
   def public_asset_status_params
-    params.require(:public_asset_status).permit(:public_asset_id, :size, :version)
+    params.require(:public_asset_status).permit(:public_asset_id, :value)
   end
 end

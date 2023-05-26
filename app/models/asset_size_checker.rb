@@ -13,13 +13,13 @@ class AssetSizeChecker
   def compare
     response = Faraday.get(asset.url)
     current = response.body.bytesize
-    expected = asset.latest_size
+    expected = asset.latest_value
 
     notification = Notification.new(asset.id, asset.url)
     if expected == current
       nothing_to_do(notification, humanize_size(current), humanize_size(expected))
     elsif within_tolerance?(current, expected)
-      PublicAssetStatus.create!(public_asset_id: asset.id, size: current)
+      PublicAssetStatus.create!(public_asset_id: asset.id, value: current)
       automatic_update(notification, humanize_size(current), humanize_size(expected))
     else
       action_required(notification, humanize_size(current), humanize_size(expected))

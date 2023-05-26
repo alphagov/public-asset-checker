@@ -15,16 +15,14 @@ RSpec.describe "/public_asset_statuses", type: :request do
   let(:valid_attributes) do
     {
       public_asset_id: public_asset.id,
-      size: 123,
-      version: "",
+      value: 123,
     }
   end
 
   let(:invalid_attributes) do
     {
       public_asset_id: public_asset.id,
-      size: nil,
-      version: nil,
+      value: nil,
     }
   end
 

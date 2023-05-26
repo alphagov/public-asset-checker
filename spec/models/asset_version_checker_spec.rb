@@ -10,7 +10,7 @@ RSpec.describe AssetVersionChecker, type: :model do
 
       version = checker.get_version(asset.url, /T="(\d+)"/)
 
-      expect(version).to eq("42")
+      expect(version).to eq(42)
     end
 
     it "does not find the version number when it is not present in the file" do
@@ -23,13 +23,17 @@ RSpec.describe AssetVersionChecker, type: :model do
   end
 
   describe "compare" do
-    let(:asset) { create(:public_asset, validate_by: "version") }
+    let(:asset) do
+      create :public_asset,
+             validate_by: "version",
+             hosted_version_regex: 'T="(\d+)"',
+             source_version_regex: 'SCRIPT_VERSION = "(\d+)"'
+    end
     let(:checker) { described_class.new(asset) }
     let(:asset_status) do
       create :public_asset_status,
              public_asset:,
-             size: nil,
-             version: 42
+             value: 42
     end
 
     it "when the versions match, we get a Nothing to do notification" do

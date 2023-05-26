@@ -4,18 +4,17 @@
   <% current_value = @public_asset.public_asset_statuses.last.value if @public_asset.public_asset_statuses.any? %>
 
   <% if @public_asset.validate_by_version? %>
-
-    <div class="govuk-form-group">
-      <%= form.text_field :version, value: current_value, class: "govuk-input" %>
-    </div>
+    <% hint = "Please give new version number." %>
   <% else %>
-    <div class="govuk-form-group">
-      <div id="size-hint" class="govuk-hint">
-        Please give new size in Bytes without commas.
-      </div>
-      <%= form.number_field :size, value: current_value, class: "govuk-input" %>
-    </div>
+    <% hint = "Please give new size in Bytes without commas." %>
   <% end %>
+
+  <div class="govuk-form-group">
+    <div id="size-hint" class="govuk-hint">
+      <%= hint %>
+    </div>
+    <%= form.number_field :value, value: current_value, class: "govuk-input" %>
+  </div>
 
   <%= form.submit "Update", class: "govuk-button" %>
 <% end %>
