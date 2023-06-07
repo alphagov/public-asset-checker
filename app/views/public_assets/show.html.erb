@@ -10,9 +10,11 @@
 <p class="govuk-body">
   <%= link_to "Edit", edit_public_asset_path(@public_asset), class: "govuk-link" %>
   | <%= link_to "New", new_public_asset_path, class: "govuk-link" %>
-  | <%= link_to "Open", @public_asset.url, target: :_blank, class: "govuk-link" %>
   <% if @public_asset.validate_by_version? %>
-    | <%= link_to "Source", ENV["GITHUB_URL"], target: :_blank, class: "govuk-link" %>
+    | <%= link_to "Ours", ENV["GITHUB_URL"], target: :_blank, class: "govuk-link" %>
+    | <%= link_to "Source", @public_asset.url, target: :_blank, class: "govuk-link" %>
+  <% else %>
+    | <%= link_to "Open", @public_asset.url, target: :_blank, class: "govuk-link" %>
   <% end %>
   <br/>
 

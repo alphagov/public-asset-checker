@@ -8,8 +8,8 @@ class AssetVersionChecker
   end
 
   def compare
-    current = get_version(asset.url, asset.hosted_version_regex)
-    expected = get_version(ENV["GITHUB_URL"], asset.source_version_regex)
+    current = get_version(ENV["GITHUB_URL"], asset.source_version_regex)
+    expected = get_version(asset.url, asset.hosted_version_regex)
 
     notification = Notification.new(asset.id, asset.url)
     if expected == current
@@ -30,7 +30,7 @@ private
   def action_required(notification, current, expected)
     notification.title = "Action required"
     notification.color = "needs-attention"
-    notification.value = "<#{ENV['GITHUB_URL']}|Source version> is *#{expected}* <#{notification.url}|Our version> is *#{current}*. Please fix our version then update the <#{ENV['PRODUCTION_URL']}/public_assets/#{notification.id}|latest value>."
+    notification.value = "<#{notification.url}|Source version> is *#{expected}* <#{ENV['GITHUB_URL']}|Our version> is *#{current}*. Please fix our version then update the <#{ENV['PRODUCTION_URL']}/public_assets/#{notification.id}|latest value>."
 
     notification
   end
@@ -38,7 +38,7 @@ private
   def nothing_to_do(notification, current, expected)
     notification.title = "Nothing to do"
     notification.color = "same"
-    notification.value = "<#{ENV['GITHUB_URL']}|Source version> is *#{expected}* <#{notification.url}|Our version> is *#{current}*."
+    notification.value = "<#{notification.url}|Source version> is *#{expected}* <#{ENV['GITHUB_URL']}|Our version> is *#{current}*."
 
     notification
   end
