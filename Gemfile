@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").chomp
 
-gem "rails", "7.1.1"
+gem "rails", "7.1.2"
 
 gem "bootsnap", require: false
 gem "faraday"
