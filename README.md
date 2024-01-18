@@ -67,6 +67,10 @@ bundle exec rails db:seed
 bundle exec rake
 ```
 
+### Updating the Slack channel
+
+Log into [Heroku](https://www.heroku.com/) then follow [this article](https://devcenter.heroku.com/articles/config-vars) to update the `SLACK_CHANNEL` environment variable in the application to the appropriate desired value. 
+
 ## Licence
 
 [MIT Licence](LICENCE)
