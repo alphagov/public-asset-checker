@@ -15,6 +15,15 @@
  */
 
 /**
+ * NOTE
+ * 
+ * These polyfills were generated using polyfill.io, which has been compromised (CVE-2024-38526).
+ * 
+ * This code was generated well before the compromise, and it is free of malicious code.
+ * However, we recommend checking any polyfills you have generated in a similar way.
+ */
+
+/**
  * TODO: Ideally this would be a NodeList.prototype.forEach polyfill
  * This seems to fail in IE8, requires more investigation.
  * See: https://github.com/imagitama/nodelist-foreach-polyfill
@@ -564,7 +573,6 @@ var detect = (
 
 if (detect) return
 
-// Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Object.defineProperty&flags=always
 (function (nativeDefineProperty) {
 
 	var supportsAccessors = Object.prototype.hasOwnProperty('__defineGetter__');
@@ -638,7 +646,6 @@ if (detect) return
 
   if (detect) return
 
-  // Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Function.prototype.bind&flags=always
   Object.defineProperty(Function.prototype, 'bind', {
       value: function bind(that) { // .length is 1
           // add necessary es5-shim utilities
@@ -1062,7 +1069,6 @@ var detect = ("Document" in this);
 
 if (detect) return
 
-// Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Document&flags=always
 if ((typeof WorkerGlobalScope === "undefined") && (typeof importScripts !== "function")) {
 
 	if (this.HTMLDocument) { // IE8
@@ -1089,7 +1095,6 @@ var detect = ('Element' in this && 'HTMLElement' in this);
 
 if (detect) return
 
-// Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Element&flags=always
 (function () {
 
 	// IE8
@@ -1208,7 +1213,6 @@ if (detect) return
 
     if (detect) return
 
-    // Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Element.prototype.classList&flags=always
     (function (global) {
       var dpSupport = true;
       var defineGetter = function (object, name, fn, configurable) {
@@ -1854,7 +1858,6 @@ var detect = ('Window' in this);
 
 if (detect) return
 
-// Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Window&flags=always
 if ((typeof WorkerGlobalScope === "undefined") && (typeof importScripts !== "function")) {
 	(function (global) {
 		if (global.constructor) {
@@ -1890,7 +1893,6 @@ var detect = (
 
 if (detect) return
 
-// Polyfill from https://cdn.polyfill.io/v2/polyfill.js?features=Event&flags=always
 (function () {
 	var unlistenableWindowEvents = {
 		click: 1,
@@ -2364,7 +2366,6 @@ Details.prototype.polyfillHandleInputs = function (node, callback) {
 
     if (detect) return
 
-    // Polyfill from https://polyfill.io/v3/polyfill.js?version=3.111.0&features=Date.now&flags=always
     Date.now = function () {
         return new Date().getTime();
     };
