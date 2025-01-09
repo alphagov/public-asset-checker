@@ -24,7 +24,7 @@ if Rails.env.development?
   from_date_time = to_date_time - 30
 
   (from_date_time..to_date_time).each do |date_time|
-    PublicAsset.all.each do |asset|
+    PublicAsset.find_each do |asset|
       PublicAssetStatus.create!(
         public_asset_id: asset.id,
         value: Faker::Number.number(digits: 4),
