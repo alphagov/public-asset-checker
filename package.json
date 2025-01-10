@@ -28,7 +28,7 @@
     "extends": "stylelint-config-gds/scss"
   },
   "devDependencies": {
-    "standard": "^17.0.0",
+    "standard": "^17.1.2",
     "stylelint": "^14.16.1",
     "stylelint-config-gds": "^0.3.0"
   }
