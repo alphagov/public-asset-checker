@@ -82,7 +82,7 @@ RSpec.describe "/public_assets", type: :request do
       it "does not create a new PublicAsset" do
         expect {
           post public_assets_url, params: { public_asset: invalid_attributes }, headers:
-        }.to change(PublicAsset, :count).by(0)
+        }.not_to change(PublicAsset, :count)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
