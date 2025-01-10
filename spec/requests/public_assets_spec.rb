@@ -87,7 +87,7 @@ RSpec.describe "/public_assets", type: :request do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post(public_assets_url, params: { public_asset: invalid_attributes }, headers:)
-        expect(response).to have_http_status(422) # rubocop:disable RSpecRails/HttpStatus
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -120,7 +120,7 @@ RSpec.describe "/public_assets", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         public_asset = PublicAsset.create! valid_attributes
         patch(public_asset_url(public_asset), params: { public_asset: { url: "", validate_by: "version" } }, headers:)
-        expect(response).to have_http_status(422) # rubocop:disable RSpecRails/HttpStatus
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
