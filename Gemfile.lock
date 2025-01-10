@@ -80,7 +80,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bigdecimal (3.1.9)
-    bootsnap (1.17.0)
+    bootsnap (1.18.4)
       msgpack (~> 1.2)
     brakeman (7.0.0)
       racc
@@ -179,7 +179,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.4)
-    msgpack (1.7.2)
+    msgpack (1.7.5)
     mutex_m (0.3.0)
     net-http (0.4.1)
       uri
