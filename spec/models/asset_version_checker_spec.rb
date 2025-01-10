@@ -18,7 +18,7 @@ RSpec.describe AssetVersionChecker, type: :model do
 
       version = checker.get_version(asset.url, /T="(\d+)"/)
 
-      expect(version).to eq(nil)
+      expect(version).to be_nil
     end
   end
 

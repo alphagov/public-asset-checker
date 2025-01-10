@@ -6,15 +6,15 @@ RSpec.describe AssetSizeChecker, type: :model do
     let(:checker) { described_class.new(asset) }
 
     it "returns true when current and expected are the same" do
-      expect(checker.within_tolerance?(100, 100)).to eq(true)
+      expect(checker.within_tolerance?(100, 100)).to be(true)
     end
 
     it "returns true when current is within the tolerance of the expected" do
-      expect(checker.within_tolerance?(100, 200)).to eq(true)
+      expect(checker.within_tolerance?(100, 200)).to be(true)
     end
 
     it "returns false when current is not within the tolerance of the expected" do
-      expect(checker.within_tolerance?(100, 201)).to eq(false)
+      expect(checker.within_tolerance?(100, 201)).to be(false)
     end
   end
 

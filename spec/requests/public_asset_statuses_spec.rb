@@ -44,7 +44,7 @@ RSpec.describe "/public_asset_statuses", type: :request do
       it "does not create a new PublicAsset" do
         expect {
           post "/public_asset_statuses", params: { public_asset_status: invalid_attributes }, headers:
-        }.to change(PublicAssetStatus, :count).by(0)
+        }.not_to change(PublicAssetStatus, :count)
       end
 
       it "redirects to the public_asset" do
