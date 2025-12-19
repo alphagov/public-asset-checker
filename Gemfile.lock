@@ -102,7 +102,7 @@ GEM
       rexml
     crass (1.0.6)
     date (3.5.1)
-    debug (1.11.0)
+    debug (1.11.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.6.2)
@@ -166,7 +166,7 @@ GEM
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.2)
-    irb (1.15.3)
+    irb (1.16.0)
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
@@ -401,7 +401,7 @@ GEM
     prism (1.5.1)
     prometheus_exporter (2.3.1)
       webrick
-    psych (5.3.0)
+    psych (5.3.1)
       date
       stringio
     public_suffix (6.0.2)
@@ -453,7 +453,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    rdoc (6.17.0)
+    rdoc (7.0.1)
       erb
       psych (>= 4.0.0)
       tsort
@@ -548,7 +548,7 @@ GEM
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
     statsd-ruby (1.5.0)
-    stringio (3.1.9)
+    stringio (3.2.0)
     thor (1.4.0)
     timeout (0.4.4)
     tsort (0.2.0)
