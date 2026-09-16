@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "standard": "^17.1.2",
-    "stylelint": "^14.16.1",
-    "stylelint-config-gds": "^0.3.0"
+    "stylelint": "^17.15.0",
+    "stylelint-config-gds": "^3.0.0"
   }
 }
