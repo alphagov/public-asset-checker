@@ -14,16 +14,6 @@
       "/public/app.js"
     ]
   },
-  "standardx": {
-    "env": {
-      "browser": true
-    }
-  },
-  "eslintConfig": {
-    "rules": {
-      "no-var": 0
-    }
-  },
   "stylelint": {
     "extends": "stylelint-config-gds/scss"
   },
