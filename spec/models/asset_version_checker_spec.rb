@@ -36,6 +36,12 @@ RSpec.describe AssetVersionChecker, type: :model do
              value: 42
     end
 
+    around do |example|
+      ClimateControl.modify GITHUB_URL: "https://www.example.com" do
+        example.run
+      end
+    end
+
     it "when the versions match, we get a Nothing to do notification" do
       stub_get(asset.url, 'T="42"')
       stub_get(ENV["GITHUB_URL"], 'SCRIPT_VERSION = "42"')
