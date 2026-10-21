@@ -25,3 +25,11 @@ jobs:
       contents: read
       security-events: write
       actions: read
+
+  lint-ruby:
+    name: Lint Ruby
+    uses: alphagov/govuk-infrastructure/.github/workflows/rubocop.yml@main
+
+  test-ruby:
+    name: Test Ruby
+    uses: ./.github/workflows/rspec.yml

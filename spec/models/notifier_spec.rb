@@ -4,6 +4,15 @@ RSpec.describe Notifier, type: :model do
   let(:notifier) { described_class.new }
   let(:notification) { Notification.new(123, "https://www.bedrock.com") }
 
+  around do |example|
+    ClimateControl.modify SLACK_WEBHOOK_URL: "https://www.example.com",
+                          SLACK_CHANNEL: "#public-asset-checker",
+                          SLACK_USERNAME: "pacbot",
+                          PRODUCTION_URL: "https://govuk-public-asset-checker.herokuapp.com" do
+      example.run
+    end
+  end
+
   describe "notify" do
     it "sends a notification" do
       stub_request(:post, ENV["SLACK_WEBHOOK_URL"])

@@ -1,6 +1,12 @@
 require "spec_helper"
 
 RSpec.describe AssetSizeChecker, type: :model do
+  around do |example|
+    ClimateControl.modify SIZE_TOLERANCE: "100" do
+      example.run
+    end
+  end
+
   describe "within_tolerance?" do
     let(:asset) { create(:public_asset) }
     let(:checker) { described_class.new(asset) }

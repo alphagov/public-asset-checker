@@ -1,21 +1,23 @@
-PublicAsset.create!(
-  [
-    {
-      url: "https://www.googletagmanager.com/gtm.js?id=GTM-MG7HG5W",
-      validate_by: "size",
-    },
-    {
-      url: "https://www.googletagmanager.com/gtag/js?id=G-S5RQ7FTGVR&l=dataLayer&cx=c",
-      validate_by: "size",
-    },
-    {
-      url: "https://cdn.speedcurve.com/js/lux.js?id=47044334",
-      validate_by: "version",
-      hosted_version_regex: 'H="(\d+)"',
-      source_version_regex: 'SCRIPT_VERSION = "(\d+)"',
-    },
-  ],
-)
+unless Rails.env.test?
+  PublicAsset.create!(
+    [
+      {
+        url: "https://www.googletagmanager.com/gtm.js?id=GTM-MG7HG5W",
+        validate_by: "size",
+      },
+      {
+        url: "https://www.googletagmanager.com/gtag/js?id=G-S5RQ7FTGVR&l=dataLayer&cx=c",
+        validate_by: "size",
+      },
+      {
+        url: "https://cdn.speedcurve.com/js/lux.js?id=47044334",
+        validate_by: "version",
+        hosted_version_regex: 'H="(\d+)"',
+        source_version_regex: 'SCRIPT_VERSION = "(\d+)"',
+      },
+    ],
+  )
+end
 
 if Rails.env.development?
   require "faker"

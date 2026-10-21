@@ -34,6 +34,7 @@ end
 group :test do
   gem "brakeman"
   gem "capybara"
+  gem "climate_control"
   gem "factory_bot_rails"
   gem "shoulda-matchers"
   gem "simplecov"
